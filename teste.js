@@ -3,8 +3,8 @@
   var doc = document.getElementById("diario");
   var pdfCanvas = document.getElementById("pdfCanvas");
   var pdfContext = pdfCanvas.getContext("2d");
-  var drawingCanvas = document.getElementById("drawingCanvas");
-  var drawingContext = drawingCanvas.getContext("2d");
+  // var drawingCanvas = document.getElementById("drawingCanvas");
+  // var drawingContext = drawingCanvas.getContext("2d");
   
   var pdfcontent = [];
   
@@ -40,8 +40,8 @@
   
       pdfCanvas.width = viewWidth;
       pdfCanvas.height = viewHeight;
-      drawingCanvas.width = viewWidth;
-      drawingCanvas.height = viewHeight;
+      // drawingCanvas.width = viewWidth;
+      // drawingCanvas.height = viewHeight;
   
       doc.style.width = `${viewWidth + 10}px`;
   
