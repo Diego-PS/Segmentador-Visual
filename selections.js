@@ -246,3 +246,36 @@ drawingCanvas.addEventListener("mouseup", (e) => {
     coordinates: [startpos[0], startpos[1], width, heigth],
   });
 });
+
+json = {}
+
+function segmentar () {
+  
+  var materia = selections.include.reduce((acc, item) => acc + item.content + " ", "");
+
+  json = {
+    "origem": "diario.pdf",
+    "diario": "Diário Prefeitura de Belo Horizonte",
+    "numero": "1539",
+    "data": "16 de Julho de 2015",
+    "segmentos": {
+      "PREFEITURA DE BELO HORIZONTE": [
+        {
+          "materia": materia,
+          "page": 1,
+          "publicador": "",
+          "id": ""
+        }
+      ]
+    }
+  }
+
+  const link = document.createElement("a");
+  const file = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
+  link.href = URL.createObjectURL(file);
+  link.download = "sample.json";
+  link.click();
+  URL.revokeObjectURL(link.href);
+
+  console.log(json);
+}
