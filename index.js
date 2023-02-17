@@ -15,12 +15,15 @@ http.createServer(function (request, response) {
     if(pathname == "/") {
         html = fs.readFileSync("index.html", "utf8");
         response.write(html);
-    } else if (pathname == "/teste.js") {
-        script = fs.readFileSync("teste.js", "utf8");
+    } else if (pathname == "/selections.js") {
+        script = fs.readFileSync("selections.js", "utf8");
         response.write(script);
     } else if (pathname == "/diario.pdf") {
         pdf = fs.readFileSync("diario.pdf");
         response.write(pdf);
+    } else if (pathname == "/style.css") {
+        css = fs.readFileSync("style.css", "utf8");
+        response.write(css);
     }
 
     response.end();

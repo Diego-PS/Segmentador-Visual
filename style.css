@@ -1,0 +1,30 @@
+
+
+.menu{
+    height:80%;
+    margin-bottom:5px;
+    margin-left: 20px;
+  }
+  
+  .lastSelected{
+    width: 98%;
+    margin-left: 20px;
+  }
+
+  #diario{
+    height:100%;
+    width: 100%;
+    position: relative;
+    overflow: auto;
+  }
+  
+  #pdfCanvas {
+    z-index: 1;
+    position: absolute;
+    
+  }
+  
+  #drawingCanvas {
+    z-index: 1;
+    position: absolute;
+  }
