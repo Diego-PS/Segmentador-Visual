@@ -251,7 +251,7 @@ json = {}
 
 function segmentar () {
   
-  var materia = selections.include.reduce((acc, item) => acc + item.content + " ", "");
+  var materia = selections.include.reduce((acc, item) => acc + item.content, "");
 
   json = {
     "origem": "diario.pdf",
