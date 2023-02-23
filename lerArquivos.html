@@ -14,8 +14,16 @@
     </style>
 </head>
 <body>
+    <script>
+        function showname () {
+        var name = document.getElementById('fileInput'); 
+        console.log('Selected file: ' + name.files.item(0).name);
+        console.log('Selected file: ' + name.files.item(0).size);
+        console.log('Selected file: ' + name.files.item(0).type);
+        };
+    </script>
     <form action="/upload" enctype="multipart/form-data" method="post">
-        <input type="file" name="someCoolFiles"><br>
+        <input id="fileInput" type="file" name="someCoolFiles" multiple onchange="showname()"><br>
         <button>Upload</button>
     </form>
 </body>
