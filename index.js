@@ -19,8 +19,8 @@ const server = http.createServer(function (request, response) {
     } else if (pathname == "/selections.js") {
         script = fs.readFileSync("selections.js", "utf8");
         response.write(script);
-    } else if (pathname == "/diario.pdf") {
-        pdf = fs.readFileSync("diario.pdf");
+    } else if (pathname.substring(0, 9) == "/uploads/") {
+        pdf = fs.readFileSync('.' + pathname);
         response.write(pdf);
     } else if (pathname == "/style.css") {
         css = fs.readFileSync("style.css", "utf8");
@@ -37,7 +37,7 @@ const server = http.createServer(function (request, response) {
             file.pipe(fs.createWriteStream(saveTo));
         });
         request.pipe(bb);
-        response.writeHead(302, {location: '/file'});
+        response.writeHead(302, {location: '/'});
     }
 
     response.end();

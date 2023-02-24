@@ -69,10 +69,14 @@ var drawingContext = drawingCanvas.getContext("2d");
 var pdfcontent = [];
 
 //Definição do PDF que será aberto.
-var pdf = "2pgs_09_04_2020_DO.pdf";
-var pdfComplexo = "diario.pdf";
+var pdfComplexo = "";
 
-var arquivoLocal = "./" + pdfComplexo;
+function trocarArquivoPdf() {
+  var name = document.getElementById('fileInput');
+  pdfComplexo =  name.files.item(0).name;
+}
+
+var arquivoLocal = "./uploads/" + pdfComplexo;
 
 let loadingTask = pdfjsLib.getDocument(arquivoLocal);
 
