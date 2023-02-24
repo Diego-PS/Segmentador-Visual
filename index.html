@@ -20,9 +20,9 @@
       <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand">SegDO</a>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Selecione um Diário Oficial (PDF)" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+          <form action="/upload" enctype="multipart/form-data" method="post" class="d-flex">
+            <input class="form-control me-2" id="fileInput" type="file" name="someCoolFiles" accept = ".pdf" multiple onchange="showname()">
+            <button class="btn btn-outline-success" type="submit">Upload</button>
           </form>
         </div>
       </nav>
