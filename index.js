@@ -36,11 +36,8 @@ const server = http.createServer(function (request, response) {
             const saveTo = path.join(__dirname, '/uploads/' + filename);
             file.pipe(fs.createWriteStream(saveTo));
         });
-        bb.on('close', () => {
-            response.writeHead(200, { 'Content-Type': 'text/plain' });
-            response.write(`upload success: ${filename}`);
-        });
         request.pipe(bb);
+        response.writeHead(302, {location: '/file'});
     }
 
     response.end();
