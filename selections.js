@@ -69,7 +69,7 @@ var drawingContext = drawingCanvas.getContext("2d");
 var pdfcontent = [];
 
 //Definição do PDF que será aberto.
-var pdfComplexo = 'diario.pdf';
+var pdfComplexo = '33a452ca-abc5-4666-8e1e-4cb765d2a1c3.pdf';
 
 var arquivoLocal = "./uploads/" + pdfComplexo;
 
@@ -277,4 +277,12 @@ function segmentar () {
   URL.revokeObjectURL(link.href);
 
   console.log(json);
+}
+
+function Enviar() {
+  var nome = document.getElementById('nomeid');
+
+  if (nome.value != "") {
+    alert('Nome: ' + nome.value);
+  }
 }

@@ -26,76 +26,82 @@
         </div>
       </nav>
 
-      <div class="row justify-content-md-center">
-        <div class="col-8" style="height:36rem;">
-          <div id="diario">
-            <canvas id="pdfCanvas"></canvas>
-            <canvas id="drawingCanvas"></canvas>
-          </div>
-        </div>
-        <div class="col-4">
-          <div class="row">
-            <h5>Informações gerais do Diário Oficial</h5><br/>
-            <h6>Nome do arquivo</h6><br/>
-            <h6>Número do Diário Oficial</h6><br/>
-            <h6>Data</h6><br/>
-          </div>
-          <div class="row">
-
-
-          </div>
-          <div class="row">
-            <div class="menu">
-              <h5>Selecione o conteúdo dos segmentos</h5>
-              <input
-                type="radio"
-                id="include"
-                class="type_selection"
-                name="select_type"
-                value="include"
-                checked
-              />
-              <label for="include">Relevantes</label><br/>
-              <input
-                type="radio"
-                id="exclude"
-                class="type_selection"
-                name="select_type"
-                value="exclude"
-              />
-              <label for="exclude">Não Relevantes</label><br/>
-              <input
-                type="radio"
-                id="unselect"
-                class="type_selection"
-                name="select_type"
-                value="unselect"
-              />
-              <label for="unselect">Desselecionar</label>
-            </div>
-            <div class="result" id="result"></div>
-          </div>
-          <div class="row">
-            <div class="lastSelectedDiv">
-              <div class="lastSelected" id="lastSelected"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <footer class="footer mt-auto py-3 bg-light">
+      <form name="formulario">
         <div class="row justify-content-md-center">
-          <div class="col-3"></div>
-          <div class="col-3">
-            <button type="button" class="btn btn-outline-success" onClick="previousPage()">Página anterior</button>
-            <button type="button" class="btn btn-outline-success" onClick="nextPage()">Próxima página</button>
+          <div class="col-8" style="height:36rem;">
+            <div id="diario">
+              <canvas id="pdfCanvas"></canvas>
+              <canvas id="drawingCanvas"></canvas>
+            </div>
           </div>
-          <div class="col-3"></div>
-          <div class="col-3">
-            <button type="button" class="btn btn-outline-success" onClick="segmentar()">Segmentar</button>
-            <button type="button" class="btn btn-outline-success" onClick="printResult()">Classificar</button>
+          <div class="col-4">
+            <div class="row">
+              <h5>Informações gerais do Diário Oficial</h5><br/>
+              <h6>Nome do arquivo</h6>
+              <input style="width: 300px; margin: 10px;" class="form-control me-2" type="text" id="nomeid" required="required" name="nome" />
+              <h6>Número do Diário Oficial</h6>
+              <input style="width: 300px; margin: 10px;" class="form-control me-2" type="text" id="numeroid" required="required" name="numero" /><br/>
+              <h6>Data</h6>
+              <input style="width: 300px; margin: 10px;" class="form-control me-2" type="text" id="dataid" required="required" name="data" /><br/>
+            </div>
+            <div class="row">
+
+
+            </div>
+            <div class="row">
+              <div class="menu">
+                <h5>Selecione o conteúdo dos segmentos</h5>
+                <input
+                  type="radio"
+                  id="include"
+                  class="type_selection"
+                  name="select_type"
+                  value="include"
+                  checked
+                />
+                <label for="include">Relevantes</label><br/>
+                <input
+                  type="radio"
+                  id="exclude"
+                  class="type_selection"
+                  name="select_type"
+                  value="exclude"
+                />
+                <label for="exclude">Não Relevantes</label><br/>
+                <input
+                  type="radio"
+                  id="unselect"
+                  class="type_selection"
+                  name="select_type"
+                  value="unselect"
+                />
+                <label for="unselect">Desselecionar</label>
+              </div>
+              <div class="result" id="result"></div>
+            </div>
+            <div class="row">
+              <div class="lastSelectedDiv">
+                <div class="lastSelected" id="lastSelected"></div>
+              </div>
+            </div>
           </div>
         </div>
-      </footer>
+        <footer class="footer mt-auto py-3 bg-light">
+          <div class="row justify-content-md-center">
+            <div class="col-3"></div>
+            <div class="col-3">
+              <button type="button" class="btn btn-outline-success" onClick="previousPage()">Página anterior</button>
+              <button type="button" class="btn btn-outline-success" onClick="nextPage()">Próxima página</button>
+            </div>
+            <div class="col-3"></div>
+            <div class="col-3">
+              <input type="submit" class="btn btn-outline-success" class="enviar" onclick="Enviar(); segmentar();" value="Segmentar" />
+              <!-- <button type="button" class="btn btn-outline-success" onClick="segmentar()">Segmentar</button> -->
+              <button type="button" class="btn btn-outline-success" onClick="printResult()">Classificar</button>
+            </div>
+          </div>
+        </footer>
+      </form>
     </div>
 
     

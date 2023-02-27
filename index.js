@@ -31,6 +31,9 @@ const server = http.createServer(function (request, response) {
     } else if (pathname == "/file") {
         html = fs.readFileSync("lerArquivos.html", "utf8");
         response.write(html);
+    } else if (pathname == "/form") {
+        html = fs.readFileSync("formulario.html", "utf8");
+        response.write(html);
     } else if (pathname === "/upload") {
         
         let file = fs.readdirSync('./uploads/')[0]
