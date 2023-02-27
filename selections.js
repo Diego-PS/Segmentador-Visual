@@ -69,7 +69,7 @@ var drawingContext = drawingCanvas.getContext("2d");
 var pdfcontent = [];
 
 //Definição do PDF que será aberto.
-var pdfComplexo = '33a452ca-abc5-4666-8e1e-4cb765d2a1c3.pdf';
+var pdfComplexo = '11beadb2-a568-4f41-b561-1c2f974961da.pdf';
 
 var arquivoLocal = "./uploads/" + pdfComplexo;
 
@@ -246,12 +246,40 @@ drawingCanvas.addEventListener("mouseup", (e) => {
   });
 });
 
-json = {}
+var json = {
+  "origem": "",
+  "diario": "",
+  "numero": "",
+  "data": "",
+  "segmentos": {
+    "PREFEITURA DE BELO HORIZONTE": [
+    ]
+  }
+}
+
+var cont_segmentos = 0
+
+function adicionarSegmento () {
+
+  var materia = selections.include.reduce((acc, item) => acc + item.content, "");
+
+  var segmento = {
+    "materia": materia,
+    "page": curPage,
+    "publicador": /*publicador.value*/"",
+    "id": ""
+  };
+
+  json["segmentos"]["PREFEITURA DE BELO HORIZONTE"][cont_segmentos] = segmento;
+  cont_segmentos++;
+  console.log(json);
+  while (selections.include.length >= 1){
+    selections.include.pop();
+  }
+}
 
 function segmentar () {
   
-  var materia = selections.include.reduce((acc, item) => acc + item.content, "");
-
   var nome = document.getElementById('nomeid');
   var numero = document.getElementById('numeroid');
   var data = document.getElementById('dataid');
@@ -262,22 +290,10 @@ function segmentar () {
     return;
   }
 
-  json = {
-    "origem": pdfComplexo,
-    "diario": nome.value,
-    "numero": numero.value,
-    "data": data.value,
-    "segmentos": {
-      "PREFEITURA DE BELO HORIZONTE": [
-        {
-          "materia": materia,
-          "page": curPage,
-          "publicador": publicador.value,
-          "id": ""
-        }
-      ]
-    }
-  }
+  json["origem"] = pdfComplexo;
+  json["diario"] = nome.value;
+  json["numero"] = numero.value;
+  json["data"] = data.value;
 
   const link = document.createElement("a");
   const file = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });

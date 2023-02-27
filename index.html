@@ -36,8 +36,8 @@
           </div>
           <div class="col-4">
             <div class="row">
-              <h5>Informações gerais do Diário Oficial</h5><br/>
-              <h6>Nome do diário oficial*</h6>
+              <h5>Informações Gerais do Diário Oficial</h5><br/>
+              <h6>Nome do Diário Oficial*</h6>
               <input style="width: 300px; margin-bottom: 5px;" class="form-control me-2" type="text" id="nomeid" required="required" name="nome" />
               <h6>Número do Diário Oficial*</h6>
               <input style="width: 300px; margin-bottom: 5px;" class="form-control me-2" type="text" id="numeroid" required="required" name="numero" /><br/>
@@ -97,6 +97,7 @@
             </div>
             <div class="col-3"></div>
             <div class="col-3">
+              <button type="button" class="btn btn-outline-success" onClick="adicionarSegmento()">Adicionar segmento</button>
               <input type="submit" class="btn btn-outline-success" class="enviar" onclick="segmentar()" value="Segmentar" />
               <!-- <button type="button" class="btn btn-outline-success" onClick="segmentar()">Segmentar</button> -->
               <button type="button" class="btn btn-outline-success" onClick="printResult()">Classificar</button>
