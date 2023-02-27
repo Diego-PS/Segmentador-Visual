@@ -10,19 +10,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.16.105/build/pdf.min.js"></script>
     <script src="selections.js" defer></script>
+    <script src="arquivo.js"></script>
 
-    <title>Segmentador de Diário Oficial (SegDO)</title>
+    <title>Segmentador Visual</title>
   </head>
   <body>
-    <div class="container-fluid">
     <!--div class="content"-->
-
       <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand">SegDO</a>
+          <a class="navbar-brand">Segmentador Visual</a>
           <form action="/upload" enctype="multipart/form-data" method="post" class="d-flex">
             <input class="form-control me-2" id="fileInput" type="file" name="someCoolFiles" accept = ".pdf" multiple onchange="showname()">
-            <button class="btn btn-outline-success" type="submit" onclick="trocarArquivoPdf()">Enviar</button>
+            <button class="btn btn-outline-success" type="submit">Enviar</button>
           </form>
         </div>
       </nav>

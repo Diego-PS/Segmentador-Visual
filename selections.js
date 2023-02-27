@@ -69,12 +69,7 @@ var drawingContext = drawingCanvas.getContext("2d");
 var pdfcontent = [];
 
 //Definição do PDF que será aberto.
-var pdfComplexo = "";
-
-function trocarArquivoPdf() {
-  var name = document.getElementById('fileInput');
-  pdfComplexo =  name.files.item(0).name;
-}
+var pdfComplexo = 'diario.pdf';
 
 var arquivoLocal = "./uploads/" + pdfComplexo;
 

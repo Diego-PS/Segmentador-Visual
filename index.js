@@ -19,6 +19,9 @@ const server = http.createServer(function (request, response) {
     } else if (pathname == "/selections.js") {
         script = fs.readFileSync("selections.js", "utf8");
         response.write(script);
+    } else if (pathname == "/arquivo.js") {
+        script = fs.readFileSync("arquivo.js", "utf8");
+        response.write(script);
     } else if (pathname.substring(0, 9) == "/uploads/") {
         pdf = fs.readFileSync('.' + pathname);
         response.write(pdf);
@@ -28,8 +31,11 @@ const server = http.createServer(function (request, response) {
     } else if (pathname == "/file") {
         html = fs.readFileSync("lerArquivos.html", "utf8");
         response.write(html);
-    } else if (request.url === "/upload") {
-        let filename = '';
+    } else if (pathname === "/upload") {
+        
+        let file = fs.readdirSync('./uploads/')[0]
+        fs.unlinkSync('./uploads/' + file);
+
         const bb = busboy({ headers: request.headers });
         bb.on('file', (name, file, info) => {
             filename = info.filename;
@@ -37,7 +43,57 @@ const server = http.createServer(function (request, response) {
             file.pipe(fs.createWriteStream(saveTo));
         });
         request.pipe(bb);
-        response.writeHead(302, {location: '/'});
+        console.log('Upload completed!');
+
+        response.writeHead(302, {location: '/changeselections'});
+    } else if (pathname == '/changeselections') {
+
+        console.log('Cheguei no changeselections')
+        let filename = fs.readdirSync('./uploads/')[0]
+        console.log('Filename: ' + filename);
+
+        let searchString = 'var pdfComplexo = \'diario.pdf\';'
+        try {
+            searchString = fs.readFileSync('./pdf.txt', 'utf8');
+        } catch (err) {
+            console.error(err);
+        }
+        console.log('Search string: ' + searchString);
+
+        fs.readFile('selections.js', 'utf8', function(err, data) {
+
+            let re = new RegExp('^.*' + searchString + '.*$', 'gm');
+
+            const newLine = 'var pdfComplexo = \'' + filename + '\';';
+            console.log('New line: ' + newLine);
+
+            let formatted = data.replace(re, newLine);
+            
+            fs.writeFile('selections.js', formatted, 'utf8', function(err) {
+                if (err) return console.log(err);
+            });
+        });
+
+        response.writeHead(302, {location: '/changepdf'});
+    } else if (pathname == '/changepdf') {
+        
+        console.log('Cheguei no changepdf')
+        let filename = fs.readdirSync('./uploads/')[0]
+        console.log('Filename: ' + filename);
+
+        const newLine = 'var pdfComplexo = \'' + filename + '\';';
+        console.log('New line: ' + newLine);
+
+        fs.writeFile('./pdf.txt', newLine, 'utf8', err => {
+            if (err) {
+                console.log(err);
+            }
+        });
+
+        response.writeHead(302, {location: '/uploaded'});
+    } else if (pathname == '/uploaded') {
+        html = fs.readFileSync("uploaded.html", "utf8");
+        response.write(html);
     }
 
     response.end();
