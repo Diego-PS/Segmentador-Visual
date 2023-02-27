@@ -252,17 +252,27 @@ function segmentar () {
   
   var materia = selections.include.reduce((acc, item) => acc + item.content, "");
 
+  var nome = document.getElementById('nomeid');
+  var numero = document.getElementById('numeroid');
+  var data = document.getElementById('dataid');
+  var publicador = document.getElementById('publicadorid');
+
+  if (nome.value == "" || numero.value == "" || data.value == "") {
+    console.log('não vou segmentar');
+    return;
+  }
+
   json = {
-    "origem": "diario.pdf",
-    "diario": "Diário Prefeitura de Belo Horizonte",
-    "numero": "1539",
-    "data": "16 de Julho de 2015",
+    "origem": pdfComplexo,
+    "diario": nome.value,
+    "numero": numero.value,
+    "data": data.value,
     "segmentos": {
       "PREFEITURA DE BELO HORIZONTE": [
         {
           "materia": materia,
-          "page": 1,
-          "publicador": "",
+          "page": curPage,
+          "publicador": publicador.value,
           "id": ""
         }
       ]
@@ -277,12 +287,4 @@ function segmentar () {
   URL.revokeObjectURL(link.href);
 
   console.log(json);
-}
-
-function Enviar() {
-  var nome = document.getElementById('nomeid');
-
-  if (nome.value != "") {
-    alert('Nome: ' + nome.value);
-  }
 }
