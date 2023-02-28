@@ -277,6 +277,8 @@ function adicionarSegmento () {
   while (selections.include.length >= 1){
     selections.include.pop();
   }
+
+  redraw();
 }
 
 function segmentar () {
