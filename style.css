@@ -28,3 +28,14 @@
     z-index: 1;
     position: absolute;
   }
+
+  .divSegmento {
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
+  }
+
+  .botaoDiv {
+    vertical-align: bottom;
+    margin-left: 4px;
+  }

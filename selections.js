@@ -271,6 +271,30 @@ function adicionarSegmento () {
     "id": ""
   };
 
+  const modal = document.getElementById("modalid");
+  
+  var divSegmento = document.createElement("div");
+  divSegmento.className = "divSegmento";
+  
+  var novoSegmento = document.createElement("p");
+  novoSegmento.className = "psegmento";
+  novoSegmento.innerHTML = JSON.stringify(segmento, null, 2);
+
+  var botaoDiv = document.createElement("div");
+  botaoDiv.className = "botaoDiv";
+
+  var botaoSegmento = document.createElement("button");
+  botaoSegmento.type = "button";
+  botaoSegmento.innerHTML = "Remover";
+  botaoSegmento.className = "btn btn-outline-danger";
+
+  botaoDiv.appendChild(botaoSegmento);
+
+  divSegmento.appendChild(novoSegmento);
+  divSegmento.appendChild(botaoDiv);
+
+  modal.appendChild(divSegmento);
+
   json["segmentos"]["PREFEITURA DE BELO HORIZONTE"][cont_segmentos] = segmento;
   cont_segmentos++;
   console.log(json);
