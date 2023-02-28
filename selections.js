@@ -262,11 +262,12 @@ var cont_segmentos = 0
 function adicionarSegmento () {
 
   var materia = selections.include.reduce((acc, item) => acc + item.content, "");
+  var publicador = document.getElementById('publicadorid');
 
   var segmento = {
     "materia": materia,
     "page": curPage,
-    "publicador": /*publicador.value*/"",
+    "publicador": publicador.value,
     "id": ""
   };
 
