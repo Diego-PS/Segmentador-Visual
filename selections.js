@@ -259,6 +259,8 @@ var json = {
 
 var cont_segmentos = 0
 
+var segmentos = {};
+
 function adicionarSegmento () {
 
   var materia = selections.include.reduce((acc, item) => acc + item.content, "");
@@ -272,21 +274,31 @@ function adicionarSegmento () {
   };
 
   const modal = document.getElementById("modalid");
+
+  segmentos[cont_segmentos] = {
+    divSegmento: document.createElement("div"),
+    novoSegmento: document.createElement("p"),
+    botaoDiv: document.createElement("div"),
+    botaoSegmento: document.createElement("button")
+  };
   
-  var divSegmento = document.createElement("div");
+  var id = cont_segmentos;
+
+  var divSegmento = segmentos[cont_segmentos].divSegmento;
   divSegmento.className = "divSegmento";
   
-  var novoSegmento = document.createElement("p");
+  var novoSegmento = segmentos[cont_segmentos].novoSegmento;
   novoSegmento.className = "psegmento";
   novoSegmento.innerHTML = JSON.stringify(segmento, null, 2);
 
-  var botaoDiv = document.createElement("div");
+  var botaoDiv = segmentos[cont_segmentos].botaoDiv;
   botaoDiv.className = "botaoDiv";
 
-  var botaoSegmento = document.createElement("button");
+  var botaoSegmento = segmentos[cont_segmentos].botaoSegmento;
   botaoSegmento.type = "button";
   botaoSegmento.innerHTML = "Remover";
   botaoSegmento.className = "btn btn-outline-danger";
+  botaoSegmento.onclick = function(){removerSegmento(id);}
 
   botaoDiv.appendChild(botaoSegmento);
 
@@ -306,10 +318,15 @@ function adicionarSegmento () {
 }
 
 function removerSegmento (numero_do_contador) {
+  alert('contador: ' + numero_do_contador);
 
   json["segmentos"]["PREFEITURA DE BELO HORIZONTE"].splice(numero_do_contador, 1);
   cont_segmentos = cont_segmentos - 1;
 
+  segmentos[numero_do_contador].divSegmento.remove();
+  segmentos[numero_do_contador].novoSegmento.remove();
+  segmentos[numero_do_contador].botaoDiv.remove();
+  segmentos[numero_do_contador].botaoSegmento.remove();
 }
 
 
