@@ -305,6 +305,14 @@ function adicionarSegmento () {
   redraw();
 }
 
+function removerSegmento (numero_do_contador) {
+
+  json["segmentos"]["PREFEITURA DE BELO HORIZONTE"].splice(numero_do_contador, 1);
+  cont_segmentos = cont_segmentos - 1;
+
+}
+
+
 function segmentar () {
   
   var nome = document.getElementById('nomeid');
