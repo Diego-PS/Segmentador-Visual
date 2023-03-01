@@ -69,7 +69,7 @@ var drawingContext = drawingCanvas.getContext("2d");
 var pdfcontent = [];
 
 //Definição do PDF que será aberto.
-var pdfComplexo = '11beadb2-a568-4f41-b561-1c2f974961da.pdf';
+var pdfComplexo = '33a452ca-abc5-4666-8e1e-4cb765d2a1c3.pdf';
 
 var arquivoLocal = "./uploads/" + pdfComplexo;
 
@@ -318,8 +318,6 @@ function adicionarSegmento () {
 }
 
 function removerSegmento (numero_do_contador) {
-  alert('contador: ' + numero_do_contador);
-
   json["segmentos"]["PREFEITURA DE BELO HORIZONTE"].splice(numero_do_contador, 1);
   cont_segmentos = cont_segmentos - 1;
 
