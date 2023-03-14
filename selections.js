@@ -69,7 +69,7 @@ var drawingContext = drawingCanvas.getContext("2d");
 var pdfcontent = [];
 
 //Definição do PDF que será aberto.
-var pdfComplexo = '33a452ca-abc5-4666-8e1e-4cb765d2a1c3.pdf';
+var pdfComplexo = '2fe2018c-094a-41b5-b6b5-f737407c4ad2.pdf';
 
 var arquivoLocal = "./uploads/" + pdfComplexo;
 

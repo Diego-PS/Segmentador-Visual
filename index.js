@@ -35,7 +35,7 @@ const server = http.createServer(function (request, response) {
 
         const bb = busboy({ headers: request.headers });
         bb.on('file', (name, file, info) => {
-            filename = info.filename;
+            filename = encodeURIComponent(info.filename);
             const saveTo = path.join(__dirname, '/uploads/' + filename);
             file.pipe(fs.createWriteStream(saveTo));
         });
