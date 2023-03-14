@@ -335,11 +335,11 @@ function segmentar () {
   var data = document.getElementById('dataid');
   var publicador = document.getElementById('publicadorid');
 
-  if (nome.value == "" || numero.value == "" || data.value == "") {
+  /*if (nome.value == "" || numero.value == "" || data.value == "") {
     console.log('não vou segmentar');
     return;
   }
-
+  */
   json["origem"] = pdfComplexo;
   json["diario"] = nome.value;
   json["numero"] = numero.value;
