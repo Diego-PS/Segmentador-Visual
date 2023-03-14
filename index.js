@@ -6,6 +6,17 @@ const path = require('path');
 var fs = require("fs");
 var url = require("url");
 
+function checagemErro (response) {
+    const arquivo_pdf = fs.statSync("pdf.txt");
+    if(arquivo_pdf.size == 0) {
+        response.writeHead(302, {location: '/erro'});
+    }
+    const arquivo_selections = fs.statSync("selections.js");
+    if(arquivo_selections.size == 0) {
+        response.writeHead(302, {location: '/erro'});
+    }
+}
+
 const server = http.createServer(function (request, response) {
 
     var pathname = url.parse(request.url).pathname;
@@ -14,7 +25,11 @@ const server = http.createServer(function (request, response) {
     response.writeHead(200);
 
     if(pathname == "/") {
+        checagemErro(response);
         html = fs.readFileSync("index.html", "utf8");
+        response.write(html);
+    } else if (pathname == "/erro") {
+        html = fs.readFileSync("erro.html", "utf8");
         response.write(html);
     } else if (pathname == "/selections.js") {
         script = fs.readFileSync("selections.js", "utf8");
