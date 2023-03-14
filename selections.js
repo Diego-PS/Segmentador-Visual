@@ -107,7 +107,7 @@ function previousPage() {
  * Mostra resultados das seleções no console.
  */
 function printResult() {
-  console.log(selections);
+  //console.log(selections);
 }
 
 /*
@@ -309,7 +309,7 @@ function adicionarSegmento () {
 
   json["segmentos"]["PREFEITURA DE BELO HORIZONTE"][cont_segmentos] = segmento;
   cont_segmentos++;
-  console.log(json);
+  //console.log(json);
   while (selections.include.length >= 1){
     selections.include.pop();
   }
@@ -354,5 +354,5 @@ function segmentar () {
   link.click();
   URL.revokeObjectURL(link.href);
 
-  console.log(json);
+  //console.log(json);
 }

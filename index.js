@@ -9,7 +9,7 @@ var url = require("url");
 const server = http.createServer(function (request, response) {
 
     var pathname = url.parse(request.url).pathname;
-    console.log("Request for " + pathname + " received.");
+    //console.log("Request for " + pathname + " received.");
 
     response.writeHead(200);
 
@@ -40,14 +40,14 @@ const server = http.createServer(function (request, response) {
             file.pipe(fs.createWriteStream(saveTo));
         });
         request.pipe(bb);
-        console.log('Upload completed!');
+        //console.log('Upload completed!');
 
         response.writeHead(302, {location: '/changeselections'});
     } else if (pathname == '/changeselections') {
 
-        console.log('Cheguei no changeselections')
+        //console.log('Cheguei no changeselections')
         let filename = fs.readdirSync('./uploads/')[0]
-        console.log('Filename: ' + filename);
+        //console.log('Filename: ' + filename);
 
         let searchString = 'var pdfComplexo = \'diario.pdf\';'
         try {
@@ -55,14 +55,14 @@ const server = http.createServer(function (request, response) {
         } catch (err) {
             console.error(err);
         }
-        console.log('Search string: ' + searchString);
+        //console.log('Search string: ' + searchString);
 
         fs.readFile('selections.js', 'utf8', function(err, data) {
 
             let re = new RegExp('^.*' + searchString + '.*$', 'gm');
 
             const newLine = 'var pdfComplexo = \'' + filename + '\';';
-            console.log('New line: ' + newLine);
+            //console.log('New line: ' + newLine);
 
             let formatted = data.replace(re, newLine);
             
@@ -74,12 +74,12 @@ const server = http.createServer(function (request, response) {
         response.writeHead(302, {location: '/changepdf'});
     } else if (pathname == '/changepdf') {
         
-        console.log('Cheguei no changepdf')
+        //console.log('Cheguei no changepdf')
         let filename = fs.readdirSync('./uploads/')[0]
-        console.log('Filename: ' + filename);
+        //console.log('Filename: ' + filename);
 
         const newLine = 'var pdfComplexo = \'' + filename + '\';';
-        console.log('New line: ' + newLine);
+        //console.log('New line: ' + newLine);
 
         fs.writeFile('./pdf.txt', newLine, 'utf8', err => {
             if (err) {
