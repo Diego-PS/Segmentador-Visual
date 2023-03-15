@@ -6,15 +6,56 @@ const path = require('path');
 var fs = require("fs");
 var url = require("url");
 
+const erroFuncaoPadrao = (err) => console.log("Erro encontrado: ", err);
+
 function checagemErro (response) {
-    const arquivo_pdf = fs.statSync("pdf.txt");
-    if(arquivo_pdf.size == 0) {
+    if (fs.existsSync("./pdf.txt")) {
+        const arquivo_pdf = fs.statSync("pdf.txt");
+        if(arquivo_pdf.size == 0) {
+            response.writeHead(302, {location: '/erro'});
+        }
+    } else {
         response.writeHead(302, {location: '/erro'});
     }
-    const arquivo_selections = fs.statSync("selections.js");
-    if(arquivo_selections.size == 0) {
+    if (fs.existsSync("./selections.js")) {
+        const arquivo_selections = fs.statSync("selections.js");
+        if(arquivo_selections.size == 0) {
+            response.writeHead(302, {location: '/erro'});
+        }
+    } else {
         response.writeHead(302, {location: '/erro'});
     }
+}
+
+function copyPDF () {
+    // Remove o arquivo na pasta uploads
+    let file = fs.readdirSync('./uploads/')[0];
+    if (fs.existsSync("./uploads/" + file)) {
+        fs.unlinkSync('./uploads/' + file, erroFuncaoPadrao);
+    }
+    
+    // Copia o arquivo diario.pdf para a pasta uploads
+    fs.copyFile("./arquivos_originais/diario.pdf", "./uploads/diario.pdf", erroFuncaoPadrao);
+}
+
+function copySelections () {
+    // Remove o arquivo pdf.txt
+    if (fs.existsSync('./pdf.txt')) {
+        fs.unlinkSync('./pdf.txt', erroFuncaoPadrao);
+    }
+
+    // Copia o arquivo pdf.txt original para o diretorio principal
+    fs.copyFile("./arquivos_originais/pdf.txt", "./pdf.txt", erroFuncaoPadrao);
+}
+
+function copyTxtFile () {
+    // Remove o arquivo selections.js
+    if (fs.existsSync('./selextions.js')) {
+        fs.unlinkSync('./selections.js', erroFuncaoPadrao);
+    }
+
+    // Copia o arquivo selections.js original para o diretorio principal
+    fs.copyFile("./arquivos_originais/selections.js", "./selections.js", erroFuncaoPadrao);
 }
 
 const server = http.createServer(function (request, response) {
@@ -31,6 +72,11 @@ const server = http.createServer(function (request, response) {
     } else if (pathname == "/erro") {
         html = fs.readFileSync("erro.html", "utf8");
         response.write(html);
+    } else if (pathname == "/reestabelecer") {
+        copyPDF();
+        copySelections();
+        copyTxtFile();
+        response.writeHead(302, {location: '/'});
     } else if (pathname == "/selections.js") {
         script = fs.readFileSync("selections.js", "utf8");
         response.write(script);
