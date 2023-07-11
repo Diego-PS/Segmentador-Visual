@@ -1,1 +1,1 @@
-function escreverArquivo() { var arquivoDiv = document.getElementById('arquivo'); arquivoDiv.className = 'f8274123-02ee-4664-ac26-f054fba7efbf.pdf'; }
+function escreverArquivo() { var arquivoDiv = document.getElementById('arquivo'); arquivoDiv.className = 'diario.pdf'; }

@@ -28,14 +28,14 @@ function checagemErro (response) {
 }
 
 function copyPDF () {
-    // Remove o arquivo na pasta uploads
-    let file = fs.readdirSync('./uploads/')[0];
-    if (fs.existsSync("./uploads/" + file)) {
-        fs.unlinkSync('./uploads/' + file, erroFuncaoPadrao);
+    // Remove o arquivo na pasta ups
+    let file = fs.readdirSync('./ups/')[0];
+    if (fs.existsSync("./ups/" + file)) {
+        fs.unlinkSync('./ups/' + file, erroFuncaoPadrao);
     }
     
-    // Copia o arquivo diario.pdf para a pasta uploads
-    fs.copyFile("./arquivos_originais/diario.pdf", "./uploads/diario.pdf", erroFuncaoPadrao);
+    // Copia o arquivo diario.pdf para a pasta ups
+    fs.copyFile("./arquivos_originais/diario.pdf", "./ups/diario.pdf", erroFuncaoPadrao);
 }
 
 function copySelections () {
@@ -83,7 +83,7 @@ const server = http.createServer(function (request, response) {
     } else if (pathname == "/arquivo.js") {
         script = fs.readFileSync("arquivo.js", "utf8");
         response.write(script);
-    } else if (pathname.substring(0, 9) == "/uploads/") {
+    } else if (pathname.substring(0, 5) == "/ups/") {
         pdf = fs.readFileSync('.' + pathname);
         response.write(pdf);
     } else if (pathname == "/style.css") {
@@ -91,13 +91,13 @@ const server = http.createServer(function (request, response) {
         response.write(css);
     } else if (pathname === "/upload") {
         
-        let file = fs.readdirSync('./uploads/')[0]
-        fs.unlinkSync('./uploads/' + file);
+        let file = fs.readdirSync('./ups/')[0]
+        fs.unlinkSync('./ups/' + file);
 
         const bb = busboy({ headers: request.headers });
         bb.on('file', (name, file, info) => {
             filename = encodeURIComponent(info.filename);
-            const saveTo = path.join(__dirname, '/uploads/' + filename);
+            const saveTo = path.join(__dirname, '/ups/' + filename);
             file.pipe(fs.createWriteStream(saveTo));
         });
         request.pipe(bb);
@@ -107,7 +107,7 @@ const server = http.createServer(function (request, response) {
     } else if (pathname == '/changeselections') {
 
         //console.log('Cheguei no changeselections')
-        let filename = fs.readdirSync('./uploads/')[0]
+        let filename = fs.readdirSync('./ups/')[0]
         //console.log('Filename: ' + filename);
 
         let searchString = 'var pdfComplexo = \'diario.pdf\';'
@@ -136,7 +136,7 @@ const server = http.createServer(function (request, response) {
     } else if (pathname == '/changepdf') {
         
         //console.log('Cheguei no changepdf')
-        let filename = fs.readdirSync('./uploads/')[0]
+        let filename = fs.readdirSync('./ups/')[0]
         //console.log('Filename: ' + filename);
 
         const newLine = 'var pdfComplexo = \'' + filename + '\';';

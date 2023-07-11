@@ -71,7 +71,7 @@ var pdfcontent = [];
 //Definição do PDF que será aberto.
 var pdfComplexo = 'diario.pdf';
 
-var arquivoLocal = "./uploads/" + pdfComplexo;
+var arquivoLocal = "./ups/" + pdfComplexo;
 
 let loadingTask = pdfjsLib.getDocument(arquivoLocal);
 
